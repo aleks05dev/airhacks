@@ -19,7 +19,7 @@ public class MovieConnector {
     public void init() {
         this.client = ClientBuilder.newClient();
         client.property(ClientProperties.CONNECT_TIMEOUT, 100);
-        client.property(ClientProperties.READ_TIMEOUT, 5);
+        client.property(ClientProperties.READ_TIMEOUT, 1000);
 
     }
 
