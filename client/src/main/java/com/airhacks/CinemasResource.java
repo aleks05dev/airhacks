@@ -1,5 +1,6 @@
 package com.airhacks;
 
+import java.util.concurrent.CompletableFuture;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -21,7 +22,12 @@ public class CinemasResource {
 
     @GET
     public void all(@Suspended AsyncResponse response) {
-        response.resume("bios 2! " + target.request().get(String.class));
+        CompletableFuture.supplyAsync(this::getMovies).
+                thenAccept(response::resume);
+    }
+
+    String getMovies() {
+        return "bio 3" + target.request().get(String.class);
     }
 
 }
