@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 
 /**
  *
@@ -18,8 +20,8 @@ public class CinemasResource {
     WebTarget target;
 
     @GET
-    public String all() {
-        return "bios! " + target.request().get(String.class);
+    public void all(@Suspended AsyncResponse response) {
+        response.resume("bios 2! " + target.request().get(String.class));
     }
 
 }
